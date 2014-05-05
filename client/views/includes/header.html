@@ -4,7 +4,8 @@
 			<a class='brand' href={{pathFor 'postsList'}}>{{pageTitle}}</a>
 			<div class='nav-collapse collapse'>
 				<ul class='nav'>
-					<li><a href={{pathFor 'postSubmit'}}>Create New Post</a></li>
+					{{#if currentUser}} <li><a href={{pathFor 'postSubmit'}}>Create New Post</a></li>
+					{{/if}}
 				</ul>
 				<ul class='nav pull-right'>
 					<li>{{> loginButtons}}</li>
