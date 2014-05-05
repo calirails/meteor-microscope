@@ -1,0 +1,15 @@
+<template name='header'>
+	<header class='navbar'>
+		<div class='navbar-inner'>
+			<a class='brand' href={{pathFor 'postsList'}}>{{pageTitle}}</a>
+			<div class='nav-collapse collapse'>
+				<ul class='nav'>
+					<li><a href={{pathFor 'postSubmit'}}>Create New Post</a></li>
+				</ul>
+				<ul class='nav pull-right'>
+					<li>{{> loginButtons}}</li>
+				</ul>
+			</div>
+		</div>
+	</header>
+</template>
