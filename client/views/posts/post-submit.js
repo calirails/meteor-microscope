@@ -11,13 +11,16 @@ Template.postSubmit.events({
 		// Rather than add to 'local' proxied collection, we'll call server side 'post' method
 		// added._id = Posts.insert(added);
 		Meteor.call('post', toAdd, function(error, id) {
-			if (error) 
-				return alert(error.reason);
-
-			// Router.go('postPage', {_id: id});
+			if (error) {
+				Errors.throw(error.reason);
+			
+				if (error.error === 302)
+					Router.go('postPage', {_id: error.details});
+			} else {
+				Router.go('postsList')
+			}
 		});
 
-		Router.go('postsList')
 		
 	}
 });

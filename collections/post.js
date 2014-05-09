@@ -1,12 +1,17 @@
 Posts = new Meteor.Collection('posts');
 
 // Deferred to manual method that bypasses the allow permissions hook anyhow
-// Posts.allow({
-// 	insert: function(userId, doc) {
-// 		// only allow inserts if user is logged in
-// 		return !!userId;
-// 	}
-// });
+Posts.allow({
+	update: ownsDocument,
+	remove: ownsDocument
+});
+
+Posts.deny({
+	update: function(userId, post, fieldNames) {
+		// deny any update that modifies any field other than url or title
+		return _.without(fieldNames, 'url', 'title').length > 0;
+	}
+});
 
 Meteor.methods({
 	post: function(postAttributes) {
@@ -21,6 +26,9 @@ Meteor.methods({
 
 		if (!postAttributes.title)
 			throw new Meteor.Error(422, 'A new post requires a title. Please provide one');
+
+		if (!postAttributes.caption)
+			throw new Meteor.Error(422, 'A new post requires a caption. Please provide one');
 
 		if (postByUrl)
 			throw new Meteor.Error(302, 'A previous post has already claimed that URL. Redirecting...', postByUrl._id);						
@@ -43,7 +51,5 @@ Meteor.methods({
 
 		var postId = Posts.insert(toAdd);
 		return postId;
-
-
 	}
 });
