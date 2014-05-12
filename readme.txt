@@ -17,3 +17,5 @@ This web site was created by following the learning book at: http://book.discove
 // ============ Custom errors package ===============
 The package was named 'cn-meteor-flash-messsages' and is included as a package.
 The source code for the package resides at: https://github.com/calirails/meteor-flash-messages.git
+	// Github account used for public repo of the custom errors package 
+	user name: 'calirails'

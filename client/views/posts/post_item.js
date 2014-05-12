@@ -6,6 +6,8 @@ Template.postItem.helpers({
 	},
 	ownPost: function() {
 		return this.userId && Meteor.user() ? Meteor.user()._id === this.userId : false;
+	},
+	commentsCount: function() {
+		return Comments.find({postId: this._id}).count();
 	}
-
 });
