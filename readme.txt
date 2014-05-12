@@ -5,7 +5,7 @@ This web site was created by following the learning book at: http://book.discove
 // ============ Local installation and run command ===============
 // to start up locally, go to root directory and run: mrt
 // == you can also run: meteor 
-// login/pwd is calvin/Cnet1234
+// login/pwd is calvin/calvin
 
 
 // ============ Cloud installation and run command ===============

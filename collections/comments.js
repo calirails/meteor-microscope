@@ -20,6 +20,8 @@ Meteor.methods({
 			submittedAt: new Date().getTime()
 		});
 
+		Posts.update({postId: post._id}, {$inc: {commentsCount: 1}});
+
 		return Comments.insert(comment);
 	}
 })
