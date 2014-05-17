@@ -12,7 +12,7 @@ Template.postEdit.events({
 			if (error)
 				Errors.throw(error.reason);
 			else
-				Router.go('postPage', {id: postId});
+				Router.go('postPage', {_id: postId});
 		});
 	},
 

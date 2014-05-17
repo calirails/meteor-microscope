@@ -30,8 +30,13 @@ Meteor.methods({
 		if (!postAttributes.caption)
 			throw new Meteor.Error(422, 'A new post requires a caption. Please provide one');
 
-		if (postByUrl)
+		if (postByUrl) {
+			console.log('Error: cannot use same post url as!');
+			console.log('       duplicate post with id=' + postByUrl._id + ' and url=' + postByUrl.url);
 			throw new Meteor.Error(302, 'A previous post has already claimed that URL. Redirecting...', postByUrl._id);						
+		}
+
+		if (this.isSimulation) { console.log('we are running isSimulation.')}
 
 		var toAdd = _.extend(_.pick(postAttributes, 'url', 'caption'), {
 			title: postAttributes.title + (this.isSimulation ? '(client)' : '(server)'),
@@ -46,7 +51,7 @@ Meteor.methods({
 			var future = new Future();
 			Meteor.setTimeout(function() {
 				future.return();
-			}, 5*1000);
+			}, 100*1000);
 			future.wait();
 		}
 
