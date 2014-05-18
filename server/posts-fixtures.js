@@ -54,4 +54,16 @@ if (Posts.find().count() === 0) {
     submittedAt: now-12*3600*1000,
     commentsCount: 0
   });
+
+  // Loop to insert a batch of fake posts
+  for (var i = 0; i < 10; i++) { 
+    Posts.insert({
+    title: 'Test post #' + i,
+    author: sacha.profile.name,
+    userId: sacha._id,
+    url: 'http://google.com/?q=test-' + i, 
+    submitted: now - i * 3600 * 1000, 
+    commentsCount: 0
+    }); 
+  }
 }
