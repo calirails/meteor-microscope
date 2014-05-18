@@ -51,7 +51,7 @@ Meteor.methods({
 			var future = new Future();
 			Meteor.setTimeout(function() {
 				future.return();
-			}, 100*1000);
+			}, 5*1000);
 			future.wait();
 		}
 
