@@ -1,5 +1,6 @@
-Meteor.publish('posts', function(sort, limit) {
-	return Posts.find({}, {sort: sort, limit: limit});
+Meteor.publish('posts', function(sort, pagelimit) {
+	console.log("publication context has limit=" + pagelimit);
+	return Posts.find({}, {sort: sort, limit: pagelimit});
 })
 
 
