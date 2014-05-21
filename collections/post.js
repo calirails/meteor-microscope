@@ -39,21 +39,21 @@ Meteor.methods({
 		if (this.isSimulation) { console.log('we are running isSimulation.')}
 
 		var toAdd = _.extend(_.pick(postAttributes, 'url', 'caption'), {
-			title: postAttributes.title + (this.isSimulation ? '(client)' : '(server)'),
+			title: postAttributes.title, // + (this.isSimulation ? '(client)' : '(server)'),
 			userId: user._id,
 			author: user.username,
 			submittedAt: new Date().getTime(),
 			commentsCount: 0
 		});
 
-		if (!this.isSimulation)	 {
-			var Future = Npm.require('fibers/future');
-			var future = new Future();
-			Meteor.setTimeout(function() {
-				future.return();
-			}, 5*1000);
-			future.wait();
-		}
+		// if (!this.isSimulation)	 {
+		// 	var Future = Npm.require('fibers/future');
+		// 	var future = new Future();
+		// 	Meteor.setTimeout(function() {
+		// 		future.return();
+		// 	}, 5*1000);
+		// 	future.wait();
+		// }
 
 		var postId = Posts.insert(toAdd);
 		return postId;

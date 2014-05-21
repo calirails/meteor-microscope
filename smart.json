@@ -3,6 +3,8 @@
     "iron-router": {},
     "spin": {},
     "accounts-ui-bootstrap-dropdown": {},
-    "cn-meteor-flash-messages": {}
+    "cn-meteor-flash-messages": {},
+    "server-info": {},
+    "iron-router-progress": {}
   }
 }
