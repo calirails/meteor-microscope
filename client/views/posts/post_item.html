@@ -1,12 +1,15 @@
 <template name="postItem">
 	<div class='post'>
+		<a href='#' class='upvote btn {{upVoteAllowed}}'>⬆</a>
 		<div class='post-content'>
 			<h3>
 				<a href='{{url}}'>{{title}}</a><span>{{domain}}</span>
 			</h3>
 			<p>
+				<!-- Note we don't use () and don't have a comma to separate arguments in method call -->
+				{{pluralize votes 'vote'}},
 				submitted by {{author}}, 
-				<a href={{pathFor 'postPage'}}>{{commentsCount}} comments</a>
+				<a href={{pathFor 'postPage'}}>{{pluralize commentsCount 'comment'}}</a>
 
 				{{#if ownPost}}
 					<a href={{pathFor 'postEdit'}}>Edit</a>

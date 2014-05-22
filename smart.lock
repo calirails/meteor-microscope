@@ -5,7 +5,9 @@
       "iron-router": {},
       "spin": {},
       "accounts-ui-bootstrap-dropdown": {},
-      "cn-meteor-flash-messages": {}
+      "cn-meteor-flash-messages": {},
+      "server-info": {},
+      "iron-router-progress": {}
     },
     "packages": {
       "iron-router": {
@@ -27,6 +29,16 @@
         "git": "https://github.com/calirails/meteor-flash-messages.git",
         "tag": "v0.1.0",
         "commit": "3dcd0577741756159f349b6e093b8d651208c9d4"
+      },
+      "server-info": {
+        "git": "https://github.com/percolatestudio/meteor-server-info.git",
+        "tag": "v0.6.1",
+        "commit": "b951de553f5e4ebec874b36b09dff4a4b7fea427"
+      },
+      "iron-router-progress": {
+        "git": "https://github.com/Multiply/iron-router-progress.git",
+        "tag": "v0.3.1",
+        "commit": "3f7900feb4bb70a1289b39a1fdcd1f438c0335b3"
       },
       "blaze-layout": {
         "git": "https://github.com/EventedMind/blaze-layout.git",

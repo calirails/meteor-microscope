@@ -39,23 +39,49 @@ Meteor.methods({
 		if (this.isSimulation) { console.log('we are running isSimulation.')}
 
 		var toAdd = _.extend(_.pick(postAttributes, 'url', 'caption'), {
-			title: postAttributes.title + (this.isSimulation ? '(client)' : '(server)'),
+			title: postAttributes.title, // + (this.isSimulation ? '(client)' : '(server)'),
 			userId: user._id,
 			author: user.username,
 			submittedAt: new Date().getTime(),
-			commentsCount: 0
+			commentsCount: 0,
+		    upVoters: [],
+		    vote: 0
 		});
 
-		if (!this.isSimulation)	 {
-			var Future = Npm.require('fibers/future');
-			var future = new Future();
-			Meteor.setTimeout(function() {
-				future.return();
-			}, 5*1000);
-			future.wait();
-		}
+		// if (!this.isSimulation)	 {
+		// 	var Future = Npm.require('fibers/future');
+		// 	var future = new Future();
+		// 	Meteor.setTimeout(function() {
+		// 		future.return();
+		// 	}, 5*1000);
+		// 	future.wait();
+		// }
 
 		var postId = Posts.insert(toAdd);
 		return postId;
+	},
+
+	upVote: function(postId) {
+		var voter = Meteor.user();
+		if (!voter) {
+			throw new Meteor.Error(401, 'You need to be logged in to vote');
+		}
+
+		// var post = Posts.findOne(postId);
+		// if (!post) {
+		// 	throw new Meteor.Error(422, 'Unable to find post to vote on');
+		// }
+
+		// if (_.include(post.upVoters, voter._id)) {
+		// 	throw new Meteor.Error(422, 'voter.userName' + ' has already voted up this post');
+		// }
+
+		Posts.update({
+			_id: postId,
+			upVoters: {$nin: [voter._id]}
+		}, {
+			$addToSet: {upVoters: voter._id},
+			$inc: {votes: 1}
+		});
 	}
 });
