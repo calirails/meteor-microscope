@@ -22,7 +22,7 @@ Template.postEdit.events({
 		if (confirm('Sure you want to delete?')) {
 			var postId = this._id;
 			Posts.remove(postId);
-			Router.go('postsList');
+			Router.go('home');
 		}
 	}
 });

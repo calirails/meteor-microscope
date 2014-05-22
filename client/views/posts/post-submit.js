@@ -17,7 +17,7 @@ Template.postSubmit.events({
 				if (error.error === 302)
 					Router.go('postPage', {_id: error.details});
 			} else {
-				Router.go('postsList')
+				Router.go('home')
 			}
 		});
 
