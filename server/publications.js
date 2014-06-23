@@ -3,8 +3,8 @@ Meteor.publish('posts', function(sort, pagelimit) {
 	return Posts.find({}, {sort: sort, limit: pagelimit});
 });
 
-Meteor.publish('singlePost', function(id) {
-	return id && Posts.find(id);
+Meteor.publish('singlePost', function(postId) {
+	return postId && Posts.find(postId);
 })
 
 
