@@ -20,7 +20,6 @@ Meteor.publish('notifications', function(userId) {
 
 
 // Ticket created at: https://github.com/DiscoverMeteor/book/issues/299
-
 Meteor.publish('topPosts', function(sort, limit) {
 	var sub = this, commentHandles = [], postHandle = null;
   
@@ -49,7 +48,7 @@ Meteor.publish('topPosts', function(sort, limit) {
 	});
   
   	sub.ready();
-	// make sure we clean everything up (note `_publishCursor` // does this for us with the comment observers) 
+	// make sure we clean everything up (note `_publishCursor` does this for us with the comment observers) 
 	sub.onStop(function() { postHandle.stop(); });
 });
 
