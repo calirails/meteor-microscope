@@ -5,13 +5,13 @@ This web site was created by following the learning book at: http://book.discove
 // ============ Local installation and run command ===============
 // to start up locally, go to root directory and run: mrt
 // == you can also run: meteor 
-// login/pwd is calvin/calvin
+// login/pwd is calvin/???
 
 
 // ============ Cloud installation and run command ===============
 // the cloud DNS claimed on meteor.com is 'cnmic.meteor.com'
 // to deploy to the cloud, run: meteor deploy cnmic.meteor.com
-// login/pwd is calvin/calvinpwd
+// login/pwd is calvin/???
 
 
 // ============ Custom errors package ===============
@@ -29,13 +29,13 @@ The source code for the package resides at: https://github.com/calirails/meteor-
 		1. NODE_OPTIONS='--debug' mrt run (if you are using Meteorite)
 		- OR - 
 		2. NODE_OPTIONS='--debug' meteor run (or if you don't have Meteorite)
-	Start node-inspector
-		calvin@~/Documents/Safezone/Projects/meteor/microscope$ node-inspector
+		3. start node-inspector by running the following: 'node-inspector' as shown below.
+			calvin@~/Documents/Safezone/Projects/meteor/microscope$ node-inspector
 			-> just feedback: Node Inspector v0.7.3
 			-> feedback and instruction to: Visit http://127.0.0.1:8080/debug?port=5858 to start debugging.
 
-	Go to the URL given by node-inspector in Chrome
-	Debug at will
-	Latter, if you need to remove this feature, just unset NODE_OPTIONS
-	== OR == 
-	For server-side debugging, you can use WebStorm or node-inspector:
+		Go to the URL given by node-inspector in Chrome
+		Debug at will
+		Latter, if you need to remove this feature, just unset NODE_OPTIONS
+		== OR == 
+		For server-side debugging, you can use WebStorm or node-inspector:
