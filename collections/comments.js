@@ -1,3 +1,4 @@
+// Fixed previous bad typo where 'comments' was badly misspelled as 'commnents'
 Comments = new Meteor.Collection('comments');
 
 Meteor.methods({

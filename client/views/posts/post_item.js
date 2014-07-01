@@ -14,6 +14,9 @@ Template.postItem.helpers({
 		} else {
 			return 'disabled';
 		}
+	},
+	joinedComments: function() {
+		return Comments.find({postId: this._id});
 	}
 });
 

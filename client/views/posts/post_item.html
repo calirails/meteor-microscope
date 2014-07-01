@@ -5,16 +5,22 @@
 			<h3>
 				<a href='{{url}}'>{{title}}</a><span>{{domain}}</span>
 			</h3>
+			<div class='edit-post'>				
+				{{#if ownPost}}
+					<a href={{pathFor 'postEdit'}}>Edit</a>
+ 				{{/if}}
+			</div>
 			<p>
 				<!-- Note we don't use () and don't have a comma to separate arguments in method call -->
 				{{pluralize votes 'vote'}},
 				submitted by {{author}}, 
 				<a href={{pathFor 'postPage'}}>{{pluralize commentsCount 'comment'}}</a>
-
-				{{#if ownPost}}
-					<a href={{pathFor 'postEdit'}}>Edit</a>
- 				{{/if}}
  			</p>
+ 			<ul class='recent-comments'>
+				{{#each joinedComments}}
+					{{> comment}}
+				{{/each}}
+ 			</ul>
 		</div>
 		<a href="{{pathFor 'postPage'}}" class='discuss btn'>Discuss</a> 
 	</div>
