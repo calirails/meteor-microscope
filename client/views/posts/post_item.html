@@ -1,5 +1,5 @@
 <template name="postItem">
-	<div class='post'>
+	<div class='post' {{attributes}}>
 		<a href='#' class='upvote btn {{upVoteAllowed}}'>⬆</a>
 		<div class='post-content'>
 			<h3>
@@ -16,11 +16,11 @@
 				submitted by {{author}}, 
 				<a href={{pathFor 'postPage'}}>{{pluralize commentsCount 'comment'}}</a>
  			</p>
- 			<ul class='recent-comments'>
+ 			<!-- <ul class='recent-comments'>
 				{{#each joinedComments}}
 					{{> comment}}
 				{{/each}}
- 			</ul>
+ 			</ul> -->
 		</div>
 		<a href="{{pathFor 'postPage'}}" class='discuss btn'>Discuss</a> 
 	</div>

@@ -1,3 +1,7 @@
+// Constants for animating and offsetting posts
+POST_HEIGHT = 80;
+var Positions = new Meteor.Collection(null); // create a local collection
+
 Template.postItem.helpers({
 	domain: function(){
 		var a = document.createElement('a');
@@ -17,6 +21,24 @@ Template.postItem.helpers({
 	},
 	joinedComments: function() {
 		return Comments.find({postId: this._id});
+	},
+	attributes: function() {
+		var post = _.extend({}, Positions.findOne({postId: this._id}), this);
+		var newPosition = post._rank * POST_HEIGHT;
+		var attributes = {};
+
+		if (! _.isUndefined(post.position)) {
+			var offset = post.position - newPosition;
+			attributes.style = "top: " + offset + "px";
+			if (offset === 0)
+				attributes.class = "post animate";
+		}
+
+		Meteor.setTimeout(function(){
+			Positions.upsert({postId: post._id}, {$set: {position: newPosition}})
+		});
+
+		return attributes;
 	}
 });
 
