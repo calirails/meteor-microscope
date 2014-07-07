@@ -1,3 +1,4 @@
+// edit on feat2 branch
 // Constants for animating and offsetting posts
 POST_HEIGHT = 80;
 var Positions = new Meteor.Collection(null); // create a local collection
