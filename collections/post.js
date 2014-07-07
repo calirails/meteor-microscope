@@ -45,7 +45,7 @@ Meteor.methods({
 			submittedAt: new Date().getTime(),
 			commentsCount: 0,
 		    upVoters: [],
-		    vote: 0
+		    votes: 0
 		});
 
 		// if (!this.isSimulation)	 {

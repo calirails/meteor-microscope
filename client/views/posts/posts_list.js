@@ -4,10 +4,12 @@ Template.postsList.helpers({
 	// posts: function() { return Posts.find({}, {sort: {submittedAt: -1}}); }
 
 	postsWithRank: function() {
-		this.posts.rewind();
-		return this.posts.map(function(post, index, cursor) {
-			post._rank = index; // augment with rank property and set it to index as default
-			return post;
-		});
+		if (this.posts) {
+			this.posts.rewind();
+			return this.posts.map(function(post, index, cursor) {
+				post._rank = index; // augment with rank property and set it to index as default
+				return post;
+			});
+		}
 	}
 });

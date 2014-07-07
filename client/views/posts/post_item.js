@@ -27,11 +27,16 @@ Template.postItem.helpers({
 		var newPosition = post._rank * POST_HEIGHT;
 		var attributes = {};
 
-		if (! _.isUndefined(post.position)) {
+		// very first time rendering, there isn't a Position object so this block is skipped
+		if (_.isUndefined(post.position)) {
+			//attributes.class = 'post invisible';
+		} else { //if (! _.isUndefined(post.position))
 			var offset = post.position - newPosition;
 			attributes.style = "top: " + offset + "px";
-			if (offset === 0)
-				attributes.class = "post animate";
+			// if false, then it's B1. where we are not animating but instantaneously teleporting post back to it previous position, ie. the offset value)
+			// if true, then it's B2, where we are add 'animate' class to move the post slowly 
+			if (offset === 0) 
+				attributes.class = "post animate"; 
 		}
 
 		Meteor.setTimeout(function(){
