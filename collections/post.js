@@ -36,9 +36,8 @@ Meteor.methods({
 			throw new Meteor.Error(302, 'A previous post has already claimed that URL. Redirecting...', postByUrl._id);						
 		}
 
-		if (this.isSimulation) { console.log('we are running isSimulation.')}
-
-		var toAdd = _.extend(_.pick(postAttributes, 'url', 'caption'), {
+		// Extract the allowed client specified attributes
+		var postToAdd = _.extend(_.pick(postAttributes, 'url', 'caption'), {
 			title: postAttributes.title, // + (this.isSimulation ? '(client)' : '(server)'),
 			userId: user._id,
 			author: user.username,
@@ -48,16 +47,30 @@ Meteor.methods({
 		    votes: 0
 		});
 
-		// if (!this.isSimulation)	 {
-		// 	var Future = Npm.require('fibers/future');
-		// 	var future = new Future();
-		// 	Meteor.setTimeout(function() {
-		// 		future.return();
-		// 	}, 5*1000);
-		// 	future.wait();
-		// }
+		if (!this.isSimulation) { 
+			console.log('we are running real method server side since "isSimulation===false".')
+			// !!! real check should use at regex mask rather than just a string length
+			var regexMaskForUrl = /^(https?:\/\/)?([\da-z\.-]+)\.([a-z\.]{2,6})([\/\w \.-]*)*\/?$/;
+			//new RegExp(Meteor.settings.regexFilterForValidUrl, 'i');
+			if (!!postToAdd.url && postToAdd.url.match(regexMaskForUrl)) {
+				var shortenedUrl = Bitly.shortenUrl(postToAdd.url);
+				postToAdd.shortenedUrl = shortenedUrl;
+			} else {
+				throw new Meteor.Error(422, 'This post requires a valid URL passing our format check but does not appear to have one. Please correct and try again.');
+			}
 
-		var postId = Posts.insert(toAdd);
+			// 	var Future = Npm.require('fibers/future');
+			// 	var future = new Future();
+			// 	Meteor.setTimeout(function() {
+			// 		future.return();
+			// 	}, 5*1000);
+			// 	future.wait();
+		} else {
+			console.log('we are running client side since "isSimulation===true".')
+		}
+
+
+		var postId = Posts.insert(postToAdd);
 		return postId;
 	},
 

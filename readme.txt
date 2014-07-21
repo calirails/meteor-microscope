@@ -1,6 +1,9 @@
 // ============ Custom Errors Package ===============
 This web site was created by following the learning book at: http://book.discovermeteor.com/
 
+// ============ Local installation and run command ===============
+start web site by navigating to the root of meteor app (server side) and type: mrt
+or alternatively: use: mrt+set which is aliased in ~/.bash_profile as: mrt+set='mrt --settings settings.json'
 
 // ============ Local installation and run command ===============
 // to start up locally, go to root directory and run: mrt
