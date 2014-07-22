@@ -49,9 +49,8 @@ Meteor.methods({
 
 		if (!this.isSimulation) { 
 			console.log('we are running real method server side since "isSimulation===false".')
-			// !!! real check should use at regex mask rather than just a string length
-			var regexMaskForUrl = /^(https?:\/\/)?([\da-z\.-]+)\.([a-z\.]{2,6})([\/\w \.-]*)*\/?$/;
-			//new RegExp(Meteor.settings.regexFilterForValidUrl, 'i');
+			
+			var regexMaskForUrl = /(https?):\/\/([\w-]+\.)+[\w-]+(\/[\w- .\/?%&=]*)?/i;
 			if (!!postToAdd.url && postToAdd.url.match(regexMaskForUrl)) {
 				var shortenedUrl = Bitly.shortenUrl(postToAdd.url);
 				postToAdd.shortenedUrl = shortenedUrl;

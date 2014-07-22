@@ -3,15 +3,15 @@ This web site was created by following the learning book at: http://book.discove
 
 // ============ Local installation and run command ===============
 start web site by navigating to the root of meteor app (server side) and the type: 
-	$mrt
- -- or to start with --setings file which is aliased in ~/.bash_profile as: mrt+set='mrt --settings settings.json', type: 
+$mrt
+- OR to start with --setings file which is aliased in ~/.bash_profile as: mrt+set='mrt --settings settings.json', type: 
 $mrt+set 
 
-// If Debuggign using node-inspector using alias for --settings to debug server -
+// If Debugging using node-inspector using alias for --settings to debug server -
 type: 
 $NODE_OPTIONS='--debug' mrt+set
-    - or alternativel without meteorite installed, type: 
- $NODE_OPTIONS='--debug' meteor run --settings settings.json 
+    - OR alternativel without meteorite installed, type: 
+$NODE_OPTIONS='--debug' meteor run --settings settings.json 
 
 
 // ============ Local installation and run command ===============
@@ -22,7 +22,10 @@ $NODE_OPTIONS='--debug' mrt+set
 
 // ============ Cloud installation and run command ===============
 // the cloud DNS claimed on meteor.com is 'cnmic.meteor.com'
-// to deploy to the cloud, run: meteor deploy cnmic.meteor.com
+// to deploy to the cloud, run: 
+	$meteor deploy cnmic.meteor.com
+	- OR alternatively to also deploy and run with settings file named 'settings.json' - 
+	$meteor deploy cnmic.meteor.com --settings settings.json
 // login/pwd is calvin/???
 
 
