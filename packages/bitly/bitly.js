@@ -47,9 +47,52 @@ Bitly.getClicks = function(link) {
 
 };
 
+
 // Extend Meteor.methods
 Meteor.methods({
 	'getBitlyClicks': function(link) {
 		return Bitly.getClicks(link);
 	}
 });
+
+
+// Adding timer to go and retrieve latest Bitly count statistics and updating DB
+var callInterval = 10000; //10*1000
+
+Meteor.setInterval(function() {
+	// get all posts with a shortened Bitly URL
+	var shortenedPosts = Posts.find({shortenedUrl: {$exists: true}});
+	var shortenedPostsCount = shortenedPosts.count();
+	console.log('setInterval called for ' + shortenedPostsCount + ' posts.');
+
+	// initialize counter
+	var counter=0;
+
+	var callTimeout = 0;
+	shortenedPosts.forEach(function(post) {
+		callTimeout = Math.round(counter*(callInterval/shortenedPostsCount));
+		Meteor.setTimeout(function(){
+			console.log('before update of posts with most recent Bitly click count.');
+			Posts.update(post._id, {$set: {clicks: Bitly.getClicks(post.shortenedUrl)}});
+			console.log('after update of posts with most recent Bitly click count.');
+		}, callTimeout);
+		counter++;
+	});
+}, callInterval);
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

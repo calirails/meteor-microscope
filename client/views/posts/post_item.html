@@ -14,6 +14,7 @@
 				<!-- Note we don't use () and don't have a comma to separate arguments in method call -->
 				{{pluralize votes 'vote'}},
 				submitted by {{author}}, 
+				{{#if clicks}} {{pluralize clicks 'click'}}, {{/if}}
 				<a href={{pathFor 'postPage'}}>{{pluralize commentsCount 'comment'}}</a>
  			</p>
  			<!-- <ul class='recent-comments'>
